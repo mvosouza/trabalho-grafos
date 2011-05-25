@@ -10,11 +10,11 @@ public class Aresta {
 		this.valor = valor;
 	}
 
-	public int v() {
+	public int origem() {
 		return origem;
 	}
 
-	public int a() {
+	public int destino() {
 		return destino;
 	}
 
