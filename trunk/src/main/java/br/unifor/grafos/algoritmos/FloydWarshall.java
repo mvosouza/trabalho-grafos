@@ -17,9 +17,14 @@ public class FloydWarshall {
 	}
 	
 	public void computar() {
+		Integer numeroDeIteracoes = 0;
+		
 		for (int k = 0; k < numeroDeVertices; k++) {
 			for (int i = 0; i < numeroDeVertices; i++) {
 				for (int j = 0; j < numeroDeVertices; j++) {
+					System.out.println("Execucao numero: " + ++numeroDeIteracoes);
+					System.out.println("------------");
+					
 					this.matrizAdjacencia[i][j] = Math.min(matrizAdjacencia[i][j], matrizAdjacencia[i][k] + matrizAdjacencia[k][j]);
 					this.imprime();
 					
