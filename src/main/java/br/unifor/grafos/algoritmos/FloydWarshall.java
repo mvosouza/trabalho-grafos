@@ -6,6 +6,11 @@ public class FloydWarshall {
 	
 	private final Integer numeroDeVertices;
 	
+	public FloydWarshall(Grafo grafo) {
+		this.matrizAdjacencia = grafo.getMat();
+		this.numeroDeVertices = grafo.getNumVertices();
+	}
+	
 	public FloydWarshall(final Integer[][] matrizAdjacencia, Integer numeroDeVertices) {
 		this.matrizAdjacencia = matrizAdjacencia;
 		this.numeroDeVertices = numeroDeVertices;
@@ -17,16 +22,36 @@ public class FloydWarshall {
 				for (int j = 0; j < numeroDeVertices; j++) {
 					this.matrizAdjacencia[i][j] = Math.min(matrizAdjacencia[i][j], matrizAdjacencia[i][k] + matrizAdjacencia[k][j]);
 					this.imprime();
+					
+					System.out.println();
 				}
 			}
 		}
 	}
 	
 	public void imprime() {
-		for (int i = 0; i < numeroDeVertices; i++) {
-			for (int j = 0; j < numeroDeVertices; j++) {
-				System.out.println(matrizAdjacencia[i][j]);
+		System.out.print("   ");
+
+		for (int i = 0; i < this.numeroDeVertices; i++) {
+			System.out.print(i+1 + "   ");
+		}
+
+		System.out.println();
+
+		for (int i = 0; i < this.numeroDeVertices; i++) {
+			System.out.print(i+1 + "  ");
+
+			for (int j = 0; j < this.numeroDeVertices; j++) {
+				Integer valor = this.matrizAdjacencia[i][j];
+				
+				if (valor == Integer.MAX_VALUE) {
+					System.out.print("inf ");
+				} else {
+					System.out.print(valor + "   ");
+				}
 			}
+
+			System.out.println();
 		}
 	}
 
