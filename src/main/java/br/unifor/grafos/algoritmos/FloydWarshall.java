@@ -6,14 +6,9 @@ public class FloydWarshall {
 	
 	private final Integer numeroDeVertices;
 	
-	public FloydWarshall(Grafo grafo) {
-		this.matrizAdjacencia = grafo.getMat();
-		this.numeroDeVertices = grafo.getNumVertices();
-	}
-	
-	public FloydWarshall(final Integer[][] matrizAdjacencia, Integer numeroDeVertices) {
-		this.matrizAdjacencia = matrizAdjacencia;
-		this.numeroDeVertices = numeroDeVertices;
+	public FloydWarshall(final Grafo grafo) {
+		this.matrizAdjacencia = grafo.getMatrizDeAdjacencia();
+		this.numeroDeVertices = grafo.getNumeroDeVertices();
 	}
 	
 	public void computar() {
