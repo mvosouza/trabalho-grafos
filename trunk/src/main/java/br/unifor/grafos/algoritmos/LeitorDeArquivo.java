@@ -31,7 +31,6 @@ public class LeitorDeArquivo {
 		while ((line = leitor.readLine()) != null) {
 			numeroDaLinha = 0;
 			
-			
 			String[] splitted = line.split("\t");
 			
 			for (int i = 0; i < splitted.length; i++) {

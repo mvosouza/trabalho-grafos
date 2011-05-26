@@ -2,30 +2,30 @@ package br.unifor.grafos.algoritmos;
 
 public class Grafo {
 
-	private Integer mat[][];
+	private Integer matrizAdjacencia[][];
 
 	private Integer numVertices;
 
-	private final int highestValue = Integer.MAX_VALUE;
+	private final int HIGHEST_VALUE = Integer.MAX_VALUE;
 
 	public Grafo(int numVertices) {
-		this.mat = new Integer[numVertices][numVertices];
+		this.matrizAdjacencia = new Integer[numVertices][numVertices];
 
 		this.numVertices = numVertices;
 
 		for (int i = 0; i < this.numVertices; i++) {
 			for (int j = 0; j < this.numVertices; j++) {
-				this.mat[i][j] = highestValue;
+				this.matrizAdjacencia[i][j] = HIGHEST_VALUE;
 			}
 		}
 	}
 
 	public Grafo(int numVertices, int numArestas) {
-		this.mat = new Integer[numVertices][numVertices];
+		this.matrizAdjacencia = new Integer[numVertices][numArestas];
 		this.numVertices = numVertices;
 		for (int i = 0; i < this.numVertices; i++) {
-			for (int j = 0; j < this.numVertices; j++) {
-				this.mat[i][j] = highestValue;
+			for (int j = 0; j < numArestas; j++) {
+				this.matrizAdjacencia[i][j] = HIGHEST_VALUE;
 			}
 		}
 	}
@@ -37,11 +37,11 @@ public class Grafo {
 
 		for (int i = 0; i < numVertices; i++) {
 			for (int j = 0; j < this.numVertices; j++) {
-				matriz[i][j] = this.mat[i][j];
+				matriz[i][j] = this.matrizAdjacencia[i][j];
 			}
 		}
 
-		this.mat = matriz;
+		this.matrizAdjacencia = matriz;
 		this.numVertices = numVertices + 1;
 	}
 
@@ -55,13 +55,13 @@ public class Grafo {
 			for (int i = 0; i < numVertices; i++) {
 				for (int j = 0; j < numVertices; j++) {
 					if (j < vertice)
-						newMat[j][i] = mat[j][i];
+						newMat[j][i] = matrizAdjacencia[j][i];
 					else if (j > vertice)
-						newMat[j - 1][i] = mat[j][i];
+						newMat[j - 1][i] = matrizAdjacencia[j][i];
 				}
 			}
 
-			this.mat = newMat;
+			this.matrizAdjacencia = newMat;
 			this.numVertices = newNumVertices;
 		} else {
 			System.out.println("Vertice inexistente");
@@ -80,16 +80,16 @@ public class Grafo {
 	}
 
 	public void insereAresta(int v1, int v2, int peso) {
-		this.mat[v1][v2] = peso;
+		this.matrizAdjacencia[v1][v2] = peso;
 	}
 
 	public boolean existeAresta(int v1, int v2) {
-		return (this.mat[v1][v2] > 0);
+		return (this.matrizAdjacencia[v1][v2] > 0);
 	}
 
 	public boolean listaAdjVazia(int v) {
 		for (int i = 0; i < this.numVertices; i++) {
-			if (this.mat[v][i] > 0) {
+			if (this.matrizAdjacencia[v][i] > 0) {
 				return false;
 			}
 		}
@@ -98,12 +98,12 @@ public class Grafo {
 	}
 
 	public Aresta retiraAresta(int v1, int v2) {
-		if (this.mat[v1][v2] == 0) {
+		if (this.matrizAdjacencia[v1][v2] == 0) {
 			return null;
 		}
 
-		Aresta aresta = new Aresta(v1, v2, this.mat[v1][v2]);
-		this.mat[v1][v2] = 0;
+		Aresta aresta = new Aresta(v1, v2, this.matrizAdjacencia[v1][v2]);
+		this.matrizAdjacencia[v1][v2] = 0;
 		return aresta;
 	}
 
@@ -120,49 +120,19 @@ public class Grafo {
 			System.out.print(i + "  ");
 
 			for (int j = 0; j < this.numVertices; j++) {
-				System.out.print(this.mat[i][j] + "   ");
+				System.out.print(this.matrizAdjacencia[i][j] + "   ");
 			}
 
 			System.out.println();
 		}
 	}
 
-	public int numVertices() {
-		return this.numVertices;
+	public Integer[][] getMatrizDeAdjacencia() {
+		return matrizAdjacencia;
 	}
 
-	public Grafo grafoSimplesBasico(Grafo g) {
-		Grafo grafoSB = g;
-
-		for (int i = 0; i < g.numVertices; i++) {
-			for (int j = 0; j < this.numVertices; j++) {
-				if (i != j && g.mat[i][j] != 0) {
-					grafoSB.mat[i][j] = 1;
-				}
-			}
-		}
-
-		return grafoSB;
-	}
-
-	public Integer[][] getMat() {
-		return mat;
-	}
-
-	public void setMat(Integer[][] mat) {
-		this.mat = mat;
-	}
-
-	public int getNumVertices() {
+	public int getNumeroDeVertices() {
 		return numVertices;
-	}
-
-	public void setNumVertices(int numVertices) {
-		this.numVertices = numVertices;
-	}
-
-	public int getHighestValue() {
-		return highestValue;
 	}
 
 }
