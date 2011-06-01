@@ -16,7 +16,6 @@ public class Main {
 		// Questao 03 - Aqui voces instanciam o algoritmos de voces e facam a logica.
 		BellmanFord bellmanFord = new BellmanFord(grafo, 0);
 		bellmanFord.computar();
-		bellmanFord.distanciaMaisCurta();
 		
 		System.out.println("Tem ciclos negativos? " + bellmanFord.temCiclosNegativos());
 	}
