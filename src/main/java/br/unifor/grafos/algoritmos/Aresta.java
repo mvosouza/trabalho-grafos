@@ -15,9 +15,9 @@ public class Aresta implements Comparator<Aresta> {
 	
 	public Aresta() {}
 
-	public Aresta(int v, int a, int valor) {
-		this.origem = v;
-		this.destino = a;
+	public Aresta(int origem, int destino, int valor) {
+		this.origem = origem;
+		this.destino = destino;
 		this.valor = valor;
 	}
 
