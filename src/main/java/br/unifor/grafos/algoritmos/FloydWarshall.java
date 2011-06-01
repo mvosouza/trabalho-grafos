@@ -6,26 +6,30 @@ public class FloydWarshall {
 	
 	private final Integer numeroDeVertices;
 	
+	private Integer[][] matrizSaida;
+	
 	public FloydWarshall(final Grafo grafo) {
 		this.matrizAdjacencia = grafo.getMatrizDeAdjacencia();
 		this.numeroDeVertices = grafo.getNumeroDeVertices();
 	}
 	
 	public void computar() {
-		Integer numeroDeIteracoes = 0;
+		this.matrizSaida = this.matrizAdjacencia;
+	
+		this.imprime();
 		
-		for (int k = 0; k < numeroDeVertices; k++) {
-			for (int i = 0; i < numeroDeVertices; i++) {
-				for (int j = 0; j < numeroDeVertices; j++) {
-					System.out.println("Execucao numero: " + ++numeroDeIteracoes);
-					System.out.println("------------");
-					
-					this.matrizAdjacencia[i][j] = Math.min(matrizAdjacencia[i][j], matrizAdjacencia[i][k] + matrizAdjacencia[k][j]);
-					this.imprime();
-					
-					System.out.println();
+		for (int k = 0; k < this.numeroDeVertices; k++) {
+			for (int i = 0; i < this.numeroDeVertices; i++) {
+				
+				Integer[][] matrizAnterior = this.matrizSaida;
+				
+				for (int j = 0; j < this.numeroDeVertices; j++) {
+					this.matrizSaida[i][j] = Math.min(matrizAnterior[i][j], matrizAnterior[i][k] + matrizAnterior[k][j]);
 				}
+	
 			}
+			
+			this.imprime();
 		}
 	}
 	
@@ -42,7 +46,7 @@ public class FloydWarshall {
 			System.out.print(i+1 + "  ");
 
 			for (int j = 0; j < this.numeroDeVertices; j++) {
-				Integer valor = this.matrizAdjacencia[i][j];
+				Integer valor = this.matrizSaida[i][j];
 				
 				if (valor == Integer.MAX_VALUE) {
 					System.out.print("inf ");
