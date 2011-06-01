@@ -6,6 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Leitor de arquivo TXT
+ * 
+ * @author Felipe Benevides
+ * @author Daniel Alves
+ */
+
 public class LeitorDeArquivo {
 	
 	private final File arquivo;

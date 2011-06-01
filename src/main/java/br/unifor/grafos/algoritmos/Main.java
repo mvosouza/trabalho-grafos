@@ -13,6 +13,10 @@ public class Main {
 		FloydWarshall floydWarshall = new FloydWarshall(grafo);
 		floydWarshall.computar();
 		
+		// Questao 02
+		Kruskal kruskal = new Kruskal();
+		
+		
 		// Questao 03 - Aqui voces instanciam o algoritmos de voces e facam a logica.
 		BellmanFord bellmanFord = new BellmanFord(grafo, 0);
 		bellmanFord.computar();
