@@ -1,5 +1,13 @@
 package br.unifor.grafos.algoritmos;
 
+/**
+ * TAD Grafo
+ * 
+ * @author Felipe Benevides
+ * @author Daniel Alves
+ *
+ */
+
 public class Grafo {
 
 	private Integer matrizAdjacencia[][];
