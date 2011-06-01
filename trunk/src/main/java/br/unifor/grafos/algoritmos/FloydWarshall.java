@@ -16,6 +16,8 @@ public class FloydWarshall {
 	public void computar() {
 		this.matrizSaida = this.matrizAdjacencia;
 	
+		System.out.println("Matriz inicial:");
+		System.out.println("---");
 		this.imprime();
 		
 		for (int k = 0; k < this.numeroDeVertices; k++) {
@@ -29,6 +31,8 @@ public class FloydWarshall {
 	
 			}
 			
+			System.out.println("Iteracao numero: " + k);
+			System.out.println("---");
 			this.imprime();
 		}
 	}
