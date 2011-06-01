@@ -22,16 +22,16 @@ public class LeitorDeArquivo {
 		
 		String line;
 		Integer numeroDaLinha = 0;
-		Integer numeroDaColuna = 0;
+		Integer numeroDaColuna;
 		
 		Integer numeroDeVertices = Integer.parseInt(leitor.readLine().trim());
 		
 		Grafo grafo = new Grafo(numeroDeVertices);
 		
 		while ((line = leitor.readLine()) != null) {
-			numeroDaLinha = 0;
+			numeroDaColuna = 0;
 			
-			String[] splitted = line.split("\t");
+			String[] splitted = line.split("\\s");
 			
 			for (int i = 0; i < splitted.length; i++) {
 				if ("inf".equalsIgnoreCase(splitted[i].trim())) {
@@ -41,10 +41,10 @@ public class LeitorDeArquivo {
 					grafo.insereAresta(numeroDaLinha, numeroDaColuna, valor);
 				}
 				
-				numeroDaLinha++;
+				numeroDaColuna++;
 			}
 			
-			numeroDaColuna++;
+			numeroDaLinha++;
 		}
 		
 		return grafo;
