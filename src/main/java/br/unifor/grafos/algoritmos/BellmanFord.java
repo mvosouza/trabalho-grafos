@@ -1,5 +1,12 @@
 package br.unifor.grafos.algoritmos;
 
+/**
+ * Algoritmo de Bellman Ford
+ * 
+ * @author Felipe Benevides
+ *
+ */
+
 public class BellmanFord {
 
 	private final Grafo grafo;
@@ -15,10 +22,15 @@ public class BellmanFord {
 		this.fonte = fonte;
 		this.pesos = new Integer[grafo.getNumeroDeVertices()];
 		this.pais = new Integer[grafo.getNumeroDeVertices()];
-		this.inicializarDistancias();
+		this.inicializar();
 	}
+	
+	/**
+	 * Inicializa toda a lista de pesos com valor infinito e 
+	 * todos os pais com valor nulo.
+	 */
 
-	private void inicializarDistancias() {
+	private void inicializar() {
 		for (int i = 0; i < grafo.getNumeroDeVertices(); i++) {
 			pesos[i] = Integer.MAX_VALUE;
 			pais[i] = null;
@@ -26,6 +38,16 @@ public class BellmanFord {
 
 		pesos[fonte] = 0;
 	}
+	
+	/**
+	 * Efetua o relaxamento.
+	 * 
+	 * Verifica se o peso do vertice origem somado com o peso da aresta
+	 * que ligam (u,v) e' menor do que menor do que o peso do vertice destino.
+	 * 
+	 * @param aresta
+	 * @return
+	 */
 
 	private boolean relaxamento(Aresta aresta) {
 		if (pesos[aresta.origem()] + aresta.valor() < pesos[aresta.destino()]) {
@@ -37,6 +59,13 @@ public class BellmanFord {
 		
 		return false;
 	}
+	
+	/**
+	 * Executa o algoritmo.
+	 * 
+	 * Executa o relaxamento V-1 vezes, ou seja, a cada V-1 iteracoes
+	 * atualiza os pesos e os pais dos vertices. 
+	 */
 	
 	public void computar() {
 		Integer[][] matriz = grafo.getMatrizDeAdjacencia();
@@ -59,6 +88,15 @@ public class BellmanFord {
 			System.out.println("-----");
 		}
 	}
+	
+	/**
+	 * Verifica se tem ciclos negativos.
+	 * 
+	 * Percorre a matriz de adj., verifica se o peso do vertice de origem (u)
+	 * somado com o peso da aresta (u,v) e' menor que o peso do vertice de destino
+	 * 
+	 * @return
+	 */
 
 	public boolean temCiclosNegativos() {
 		Integer[][] matriz = grafo.getMatrizDeAdjacencia();
